@@ -10,21 +10,21 @@ spec:
   replicas: 2
   # The selector will be applied automatically
   # from the labels in the pod template, if not set.
-  # selector:
-      # app: cassandra
+  selector:
+      app: minecraft
   template:
     metadata:
       labels:
         app: minecraft
     spec:
-      containers:        
+      containers:
       - name: minecraft
-      env:
-        - name: EULA
-          value: true
-      image: openhack/minecraft-server:1.0
-      ports:
-        - containerPort: 25565
-          name: intra-node
-        - containerPort: 25575
-          name: tls-intra-node
+        image: openhack/minecraft-server:1.0
+        ports:
+          - containerPort: 25565
+            name: minecraft-port
+          - containerPort: 25575
+            name: rcon-port
+        env:
+          - name: EULA
+            value: "true"
