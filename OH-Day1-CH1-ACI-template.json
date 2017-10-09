@@ -1,0 +1,62 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"storageAccountName": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"containerName": "minecraft-server"
+	},
+	"resources": [{
+		"name": "[variables('containerName')]",
+		"type": "Microsoft.ContainerInstance/containerGroups",
+		"apiVersion": "2017-08-01-preview",
+		"location": "[resourceGroup().location]",
+		"properties": {
+			"containers": [{
+				"name": "[variables('containerName')]",
+				"properties": {
+					"image": "openhack/minecraft-server:1.0",
+					"resources": {
+						"requests": {
+							"cpu": 1,
+							"memoryInGb": 1.5
+						}
+					},
+					"environmentVariables": [{
+						"name": "EULA",
+						"value": "TRUE"
+					}],
+					"ports": [{
+							"port": 25565
+						},
+						{
+							"port": 25575
+						}
+					]
+				}
+			}],
+			"osType": "Linux",
+			"ipAddress": {
+				"type": "Public",
+				"ports": [{
+						"protocol": "TCP",
+						"port": 25565
+					},
+					{
+						"protocol": "TCP",
+						"port": 25575
+					}
+				]
+			}
+		}
+	}],
+	"outputs": {
+		"serverAddress": {
+			"type": "string",
+			"value": "[reference(concat('Microsoft.ContainerInstance/containerGroups/', variables('containerName')), '2017-08-01-preview').ipAddress.ip]"
+		}
+	}
+}
