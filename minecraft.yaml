@@ -47,12 +47,8 @@ spec:
         volumeMounts:
           - mountPath: /data
             name: minecraft-data
-        livenessProbe:
-          exec:
-            command:
-            - netstat -anp | grep :25565 | grep ESTABLISHED | wc -l >> player.count
-          initialDelaySeconds: 60
-          periodSeconds: 60
+        command: ["/bin/sh"]
+        args: ["/data/minecraft_user_count.sh"]
         env:
           - name: EULA
             value: "true"
