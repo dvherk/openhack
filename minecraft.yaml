@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: minecraft
-        image: openhack/minecraft-server:1.0
+        image: openhack/minecraft-server:2.0
         ports:
           - containerPort: 25565
             name: minecraft-port
