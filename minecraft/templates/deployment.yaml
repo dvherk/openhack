@@ -80,7 +80,6 @@ spec:
         - name: JVM_OPTS
           value: {{ .Values.minecraftServer.jvmOpts | quote }}
 
-        {{- if .Values.minecraftServer.rcon.enabled }}
         - name: ENABLE_RCON
           value: "true"
         - name: RCON_PASSWORD
@@ -88,7 +87,6 @@ spec:
             secretKeyRef:
               name: {{ template "minecraft.fullname" . }}
               key: rcon-password
-        {{- end }}
 
         ports:
         - name: minecraft
