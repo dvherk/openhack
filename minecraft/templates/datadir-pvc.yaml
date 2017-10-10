@@ -17,6 +17,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
   resources:
     requests:
       storage: {{ .Values.persistence.dataDir.Size | quote }}

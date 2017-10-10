@@ -58,7 +58,5 @@ spec:
             value: "true"
       volumes:
       - name: minecraft-data
-        azureFile:
-          secretName: azure-secret
-          shareName: minecraft-share
-          readOnly: false
+        persistentVolumeClaim:
+          claimName: az-files-02
