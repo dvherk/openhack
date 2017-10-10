@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace kube_rest_api
+namespace Kube.RestApi
 {
     public class Program
     {

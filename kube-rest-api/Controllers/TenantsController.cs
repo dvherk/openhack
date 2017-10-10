@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Kube.RestApi.Models;
 
-namespace kube_rest_api.Controllers
+namespace Kube.RestApi
 {
     [Route("api/[controller]")]
     public class TenantsController : Controller
