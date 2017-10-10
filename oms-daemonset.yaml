@@ -16,9 +16,9 @@ spec:
        imagePullPolicy: Always
        env:
        - name: WSID
-         value: 89ffcc69-e2b4-4c77-bff3-890e480c72df
+         value: 7f1606c3-5241-4d1b-bcdf-a2a9c47492d9
        - name:  KEY
-         value: KBstJQc0oBpuW67SijPJyy/g9BUq77S3/wWos6FFqxCYiPSFY8jvCq1hWjWLS1tjYgXtfqqwSMN+0MX73Svhng== 
+         value: rXhGXa5xdoaK/IRTo/2YdspdykshIKg4dHdDeo2X1YM2vcYfD8WX0uI31KaiUM4oVTFrO4eXTHCT99z4l0+ppQ== 
        - name: DOMAIN
          value: opinsights.azure.com
        securityContext:
