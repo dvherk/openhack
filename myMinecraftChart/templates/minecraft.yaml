@@ -27,7 +27,7 @@ metadata:
   # from the labels in the pod template, if not set
 spec:
   serviceName: minecraft-service-{{.Release.Name }}
-  replicas: 1
+  replicas: 2
   # The selector will be applied automatically
   # from the labels in the pod template, if not set.
   selector:
@@ -49,12 +49,6 @@ spec:
         volumeMounts:
           - mountPath: /data
             name: minecraft-data
-        livenessProbe:
-          exec:
-            command:
-            - netstat -anp | grep :25565 | grep ESTABLISHED | wc -l >> player.count
-          initialDelaySeconds: 60
-          periodSeconds: 60
         env:
           - name: EULA
             value: "true"
