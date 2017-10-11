@@ -27,7 +27,7 @@ metadata:
   # from the labels in the pod template, if not set
 spec:
   serviceName: minecraft-service-{{.Release.Name }}
-  replicas: 2
+  replicas: 1
   # The selector will be applied automatically
   # from the labels in the pod template, if not set.
   selector:
@@ -55,4 +55,4 @@ spec:
       volumes:
       - name: minecraft-data
         persistentVolumeClaim:
-          claimName: az-files-02
+          claimName: az-{{.Release.Name }}
