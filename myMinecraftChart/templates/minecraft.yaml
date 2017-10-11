@@ -19,17 +19,19 @@ spec:
     app: minecraft-{{.Release.Name }}
   type: LoadBalancer
 ---
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1beta1
+kind: StatefulSet
 metadata:
-  name: minecraft-controller-{{.Release.Name }}
+  name: minecraft-statefulset-{{.Release.Name }}
   # The labels will be applied automatically
   # from the labels in the pod template, if not set
 spec:
+  serviceName: minecraft-service-{{.Release.Name }}
   replicas: 1
   # The selector will be applied automatically
   # from the labels in the pod template, if not set.
   selector:
+    matchLabels:
       app: minecraft-{{.Release.Name }}
   template:
     metadata:
