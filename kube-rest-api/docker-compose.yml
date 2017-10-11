@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  kube.restapi:
+    image: kube.restapi
+    build:
+      context: .
+      dockerfile: Dockerfile
