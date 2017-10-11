@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.7.4/beautify.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>Kubernetes API Viewer</h1>
+        <p id="labelStatus">Loading</p>
+        <table class="table table-striped">
+            <thead  class="thead-inverse">
+                <tr>
+                    <th>tenant</th>
+                    <th>endpoints</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+        <pre id="result" />
+    </div>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://functions-team20.azurewebsites.net/api/pods",
+                data: {},
+                success: function (result) {
+                    $("#labelStatus").fadeOut(1000);
+
+                    $.each(result, function (key, value) {
+                        $("#tableBody").append("<tr><td>" + value.name + "</td><td> minecraft: " + value.endpoints.minecraft + "<br/>rcon: " + value.endpoints.rcon + "</td></tr>");
+                    });
+                    //$("#result").html(js_beautify(JSON.stringify(result), { 'preserve_newlines': false }));
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
